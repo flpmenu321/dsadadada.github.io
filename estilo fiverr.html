@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sua Página Profissional</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Certifique-se de criar um arquivo CSS separado -->
+    <script src="script.js"></script> <!-- Certifique-se de criar um arquivo JavaScript separado -->
+    <style>
+        /* Estilos da Caixa Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f2f2f2; /* Nova cor de fundo */
+            z-index: 999;
+            width: 600px; /* Reduzido para 600px */
+            height: 500px; /* Reduzido para 500px */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.3s ease-in-out; /* Adicionada animação de fade-in */
+        }
+
+        .modal-content {
+            padding: 20px;
+            position: relative;
+            border-radius: 10px;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Botão "Criar Conta" */
+        .create-account-button {
+            display: block;
+            margin: 0 auto;
+            background-color: #FF5722;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            width: 150px;
+        }
+
+        .create-account-button:hover {
+            background-color: #E64A19;
+        }
+
+        /* Estilos adicionais para tornar a página mais atraente */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+        }
+
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        header nav ul li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        header nav ul li:last-child {
+            margin-right: 0;
+        }
+
+        header nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .hero {
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .hero h1 {
+            color: #333;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            color: #777;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .hero a {
+            background-color: #FF5722;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .hero a:hover {
+            background-color: #E64A19;
+        }
+
+        .services {
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        .service {
+            display: inline-block;
+            margin: 0 20px;
+            text-align: left;
+            max-width: 300px;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .service:hover {
+            transform: translateY(-10px);
+        }
+
+        .service img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .service h3 {
+            color: #333;
+            font-size: 24px;
+            margin-top: 10px;
+        }
+
+        .service p {
+            color: #777;
+            font-size: 16px;
+        }
+
+        .contact {
+            background-color: #f4f4f2;
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .contact h2 {
+            color: #333;
+            font-size: 36px;
+        }
+
+        .contact form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .input-box {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .password-hint {
+            color: #777;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        /* Estilos para o botão "Enviar Código" */
+        .send-code-button {
+            background-color: #007BFF;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-left: 10px; /* Espaço à esquerda do botão */
+        }
+
+        .send-code-button:hover {
+            background-color: #0056b3;
+        }
+
+        .contact button {
+            background-color: #FF5722;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact button:hover {
+            background-color: #E64A19;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        /* Animação de fade-in */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Media query para dispositivos móveis */
+        @media (max-width: 600px) {
+            /* Redefina a largura da caixa modal */
+            .modal {
+                width: 100%;
+                max-width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                transform: none;
+                border-radius: 0;
+            }
+
+            /* Redefina a largura da modal-content */
+            .modal-content {
+                width: 100%;
+                height: 100%;
+                border-radius: 0;
+                padding: 10px;
+            }
+
+            /* Ajuste os estilos para dispositivos móveis, se necessário */
+            /* Por exemplo, você pode reduzir o tamanho da fonte, o tamanho do botão, etc. */
+        }
+    </style>
+</head>
+<body>
+    <!-- Seu conteúdo HTML aqui -->
+</body>
+</html>
